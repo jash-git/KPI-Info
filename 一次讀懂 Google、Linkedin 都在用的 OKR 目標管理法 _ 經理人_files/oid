@@ -1,0 +1,9 @@
+window.ONEAD_etag_cscb({
+  "dnt": 0,
+  "guid": "c95613d3-aeff-11e7-ae90-0242ac110001",
+  "guid_exist": true,
+  "ip": "180.217.212.189",
+  "oid": "c95613d3-aeff-11e7-ae90-0242ac110001",
+  "oid_isnew": false,
+  "success": true
+});

@@ -1,0 +1,386 @@
+! function i(e, t, n) {
+    function _(T, O) {
+        if (!t[T]) {
+            if (!e[T]) {
+                var a = "function" == typeof require && require;
+                if (!O && a) return a(T, !0);
+                if (r) return r(T, !0);
+                var s = new Error("Cannot find module '" + T + "'");
+                throw s.code = "MODULE_NOT_FOUND", s
+            }
+            var c = t[T] = {
+                exports: {}
+            };
+            e[T][0].call(c.exports, function(i) {
+                var t = e[T][1][i];
+                return _(t ? t : i)
+            }, c, c.exports, i, e, t, n)
+        }
+        return t[T].exports
+    }
+    for (var r = "function" == typeof require && require, T = 0; T < n.length; T++) _(n[T]);
+    return _
+}({
+    1: [function(i, e, t) {
+        "use strict";
+
+        function n(i) {
+            var e = "mainStyle",
+                t = "LOGO_URL",
+                n = "LOGO_IMAGE",
+                _ = "discountTagDom",
+                r = "itemInfoStyle",
+                T = "IS_SHOW_ORIGIN_PRICE",
+                O = "orginPriceStyle",
+                a = "ORIGIN_PRICE_TITLE_CONTENT",
+                s = "CURRENCY_CONTENT",
+                c = "ORIGIN_PRICE_TAIL_CONTENT",
+                o = "currentPriceStyle",
+                I = "CURRENT_PRICE_TITLE_CONTENT",
+                N = "CURRENT_PRICE_TAIL_CONTENT",
+                E = "actBtnLgStyle",
+                C = "ACT_BTN_LG_CONTENT",
+                R = "rotatePromoImgDom",
+                l = ['<div id="appier-ad-300-600-verti-discountPercentage" class="appier-ad" uuid="' + M + '" style=" ' + e + ' ">', '<a class="logo" target="_blank" href="' + t + '">', '<img src="' + n + '">', "</a>", '<div class="items clearfix">', '<ul class="clearfix">', "<% for(var i =0; i < 4; i++){ %>", '<li class="item-wrap">', '<a class="item" href="<% this[i].click_url %>" target="_blank">', '<div class="img-wrap">', '<div class="imgDiv" style="background-image:url(<% this[i].img %>)">', _, "</div>", "</div>", '<div class="info-wrap clearfix">', '<div class="title" style=" ' + r + ' "><%this[i].title%></div>', '<div class="price-wrap">', '<div class="origin-price-wrap">', '<span class="origin-price text ' + T + '" style=" ' + O + ' ">', '<span class="origin-price-title">', a, "</span>", '<span class="currency">', s, "</span>", "<%this[i].origprice%>", '<span class="origin-price-tail">', c, "</span>", "</span>", "</div>", '<span class="current-price text" style=" ' + o + ' ">', '<span class="current-price-title">', I, "</span>", '<span class="currency">', s, "</span>", "<%this[i].price%>", '<span class="current-price-tail">', N, "</span>", "</span>", "</div>", '<div class="btn-wrap">', '<button class="btn" style=" ' + E + ' ">' + C + "</button>", "</div>", "</div>", "</a>", "</li>", "<% } %>", "</ul>", "</div>", R, "</div>"].join(""),
+                p = m(l, i, !1);
+            $("body").append(p), G()
+        }
+
+        function _() {}
+
+        function r() {}
+
+        function T() {
+            N = $("#appier-ad-300-600-verti-discountPercentage"), E = N.find(".view"), C = N.find(".items"), R = N.find(".item"), l = N.find(".btn")
+        }
+
+        function O(i) {
+            var e, t;
+            R.each(function(n) {
+                e = $(this), e.data(i[n]), t = e.find("img"), t.load(F(e, t)), e.find(".discountRateWrap").html(P.getDiscountRate(i[n].origprice, i[n].price, "discountPercentage").discountDom), i[n].origprice === i[n].price && e.find(".origin-price").hide()
+            })
+        }
+
+        function a(i) {
+            I = setTimeout(function() {
+                s(i)
+            }, 3e3)
+        }
+
+        function s(i) {
+            var e, t;
+            clearTimeout(I), S || (S = !0, !i.error && i.value && i.value.length > 0 && (i.value = L(i.value, ITEM_COUNTS), e = g(LOGO_IMAGE, APPEND_GA, XST, h, i), t = e.data, LOGO_IMAGE = e.LOGO_IMAGE, APPEND_GA = e.APPEND_GA, t = t.map(function(i) {
+                return i.price.indexOf(".") > -1 ? i.price = f(i.price.slice(0, i.price.indexOf("."))) : (i.price = f(i.price), i.origprice = f(i.origprice)), i
+            }), n(t), T(), O(t), A(XST, i, h), _(), r()))
+        }
+
+        function c() {
+            try {
+                var i = h = JSON.parse($("#richmedia-info").text().trim());
+                SITE_ID = i.SITE_ID ? i.SITE_ID : SITE_ID, XST = i.XST ? i.XST : XST, XUID = i.xuid ? i.xuid : XUID, IDFA = i.idfa ? i.idfa : IDFA, GU = i.googleuid ? i.googleuid : GU, ADXIDFA = i.adxidfa ? i.adxidfa : ADXIDFA, APPEND_GA = i.append_ga ? i.append_ga : "", CID = i.cid, CRID = i.crid, EX = i.ex, PRODUCT_IDS = i.product_ids
+            } catch (e) {}
+            h.bidobjid && 0 !== h.bidobjid.length || (h.bidobjid = M)
+        }
+
+        function o() {
+            c(), d(XST, SITE_ID, SKEY, XUID, IDFA, GU, ADXIDFA, CID, CRID, DEFAULT_JSON, M, s, a, EX, PRODUCT_IDS)
+        }
+        window.CREATIVE_INFO_CONFIG_START = "CREATIVE_INFO_CONFIG_START_INDEX", window.CREATIVE_INFO.CONFIG = {"ORIGIN_PRICE_FONT_COLOR":"#969696","ORIGIN_PRICE_TITLE_CONTENT":"","ACT_BTN_SM_CONTENT":"搶購","ACT_BTN_LG_CONTENT":"搶購","PRICE_PERCENTILE_TYPE":"none","CURRENT_PRICE_TAIL_CONTENT":"","ACT_BTN_LG_FONT_COLOR":"","LOGO_IMAGE":"https://ad.appier.net/0f4895af-9b95-4613-9c75-cb8f2314d0cd/YDJMXZX_1530158855400_0.png","ACT_BTN_SM_FONT_COLOR":"","CURRENCY_CONTENT":"$","DISCOUNT_TAG_BG_COLOR":"","MAIN_FONT_FAMILY":"","CURRENT_PRICE_FONT_COLOR":"#cb020a","MAIN_BG_COLOR":"#fff","PROMOTE_URL":"","MAIN_BORDER":"1px solid #969696","CURRENT_PRICE_TITLE_CONTENT":"特價","DISCOUNT_TAG_FONT_COLOR":"#cb020a","ITEM_INFO_FONT_COLOR":"#222222","ORIGIN_PRICE_TAIL_CONTENT":"","IS_SHOW_ORIGIN_PRICE":"true","ACT_BTN_LG_BG_COLOR":"#a52419","ACT_BTN_SM_BG_COLOR":"#a52419"}, window.CREATIVE_INFO_CONFIG_END = "CREATIVE_INFO_CONFIG_END_INDEX";
+        var I, N, E, C, R, l, p = i("../../../lib/commonWindowVariation.js"),
+            u = i("../../../lib/ssidGenerator.js"),
+            d = i("../../../lib/loadContent.js"),
+            A = i("../../../lib/showBeacon.js"),
+            L = i("../../../lib/ensureDataLength.js"),
+            g = i("../../../lib/preprocessData.js"),
+            G = i("../../../lib/appendPrivacyLink.js"),
+            F = i("../../../lib/centerImage.js"),
+            f = i("../../../lib/getNumberWithCommas.js"),
+            m = i("../../../lib/generateTemplate.js"),
+            _ = i("../../../lib/bindEvent.js"),
+            P = i("../../../lib/discountTag.js"),
+            h = {},
+            S = !1,
+            M = u();
+        p(window, "w_300x600_basic", 4), o()
+    }, {
+        "../../../lib/appendPrivacyLink.js": 3,
+        "../../../lib/bindEvent.js": 4,
+        "../../../lib/centerImage.js": 5,
+        "../../../lib/commonWindowVariation.js": 6,
+        "../../../lib/discountTag.js": 8,
+        "../../../lib/ensureDataLength.js": 9,
+        "../../../lib/generateTemplate.js": 11,
+        "../../../lib/getNumberWithCommas.js": 12,
+        "../../../lib/loadContent.js": 13,
+        "../../../lib/preprocessData.js": 14,
+        "../../../lib/showBeacon.js": 15,
+        "../../../lib/ssidGenerator.js": 16
+    }],
+    2: [function(i, e, t) {
+        "use strict";
+        e.exports = function(i, e) {
+            for (var t, n = /<%([^%>]+)?%>/g, _ = /(^( )?(if|for|else|switch|case|break|{|}))(.*)?/g, r = "var r=[];\n", T = 0, O = function a(i, e) {
+                    return r += e ? i.match(_) ? i + "\n" : "r.push(" + i + ");\n" : "" != i ? 'r.push("' + i.replace(/"/g, '\\"') + '");\n' : "", a
+                }; t = n.exec(i);) O(i.slice(T, t.index))(t[1], !0), T = t.index + t[0].length;
+            return O(i.substr(T, i.length - T)), r += 'return r.join("");', new Function(r.replace(/[\r\t\n]/g, "")).apply(e)
+        }
+    }, {}],
+    3: [function(i, e, t) {
+        "use strict";
+        e.exports = function() {
+            var i = ['<a class="privacy-link" style="display: block; width: 20px; height: 20px; position: absolute; right: 0; top: 0; z-index: 1000;" ', 'href="http://www.appier.com/en/retargeting_privacy.html" target="_blank">', '<span style="display: inline-block; background: rgba(255,255,255,0.7); width: 14px; height: 14px; margin: 0 0 6px 6px;">', '<svg width="14px" height="14px" viewBox="0 0 512 512" enable-background="new 0 0 512 512">', '<path fill="#1092cc" d="M256,90c91.74,0,166,74.244,166,166c0,91.741-74.245,166-166,166c-91.741,0-166-74.245-166-166', "C90,164.259,164.244,90,256,90 M256,50C142.229,50,50,142.229,50,256s92.229,206,206,206s206-92.229,206-206S369.771,50,256,50", "L256,50z M258.025,379.511c-14.546,0-26.343-11.797-26.343-26.349c0-14.543,11.797-26.336,26.343-26.336", "c14.549,0,26.342,11.793,26.342,26.336C284.367,367.714,272.574,379.511,258.025,379.511z M278.735,301.646v4.739", "c0,0-39.494,0-43.423,0v-4.739c0-13.408,1.956-30.61,17.523-45.565c15.569-14.958,35.024-27.312,35.024-45.996", "c0-20.655-14.335-31.581-32.409-31.581c-30.116,0-32.085,31.234-32.827,38.112H180.39c1.125-32.57,14.891-78.127,75.315-78.127", 'c52.363,0,75.905,35.07,75.905,67.957C331.61,258.793,278.735,267.886,278.735,301.646z"></path>', "</svg>", "</span>", "</a>"].join("");
+            $(".appier-ad").append(i)
+        }
+    }, {}],
+    4: [function(i, e, t) {
+        "use strict";
+        var n = i("./centerImage.js"),
+            _ = i("./getNumberWithCommas.js"),
+            r = i("./discountTag.js");
+        e.exports = function(i, e, t, T, O) {
+            return "mouseEnterType1" === T && t.on("mouseenter", function() {
+                var i = $(this),
+                    T = i.data(),
+                    a = e.find(".img-wrap"),
+                    s = e.find("img"),
+                    c = e.find(".promotional-text-wrap");
+                t.removeClass("selected"), i.addClass("selected"), e.find(".title").text(T.title), s.attr("src", T.img).attr("style", ""), e.attr("href", T.click_url), T.origprice === T.price ? (e.find(".origin-price").text("").hide(), e.find(".current-price").html('<span class="current-price-title">' + CURRENT_PRICE_TITLE_CONTENT + '</span><span class="currency">' + CURRENCY_CONTENT + "</span>" + _(T.price) + '<span class="current-price-tail">' + CURRENT_PRICE_TAIL_CONTENT + "</span>")) : (e.find(".origin-price").html('<span class="origin-price-title">' + ORIGIN_PRICE_TITLE_CONTENT + '</span><span class="currency">' + CURRENCY_CONTENT + "</span>" + _(T.origprice) + '<span class="origin-price-tail">' + ORIGIN_PRICE_TAIL_CONTENT + "</span>").show(), e.find(".current-price").html('<span class="current-price-title">' + CURRENT_PRICE_TITLE_CONTENT + '</span><span class="currency">' + CURRENCY_CONTENT + "</span>" + _(T.price) + '<span class="current-price-tail">' + CURRENT_PRICE_TAIL_CONTENT + "</span>")), "discount" === O ? a.find(".discountRateWrap").html(r.getDiscountRate(_(T.origprice), _(T.price), "discountPercentage").discountDom) : "_%" === O && a.find(".discountRateWrap").html(r.getDiscountRate(_(T.origprice), _(T.price), "savingPriceRate").discountDom), T.PromotionalText ? c.find(".promotional-text").text(T.PromotionalText).show() : c.find(".promotional-text").hide(), s.load(n(a, s))
+            }), t
+        }
+    }, {
+        "./centerImage.js": 5,
+        "./discountTag.js": 8,
+        "./getNumberWithCommas.js": 12
+    }],
+    5: [function(i, e, t) {
+        "use strict";
+        e.exports = function n(i, e, t) {
+            t = (t || 0) + 1;
+            var _, r, T;
+            _ = i.width(), r = e.width(), r > 0 ? r > 2 * _ ? e.css({
+                "max-width": "100%",
+                "z-index": 1
+            }) : r > _ ? (T = Math.round((_ - r) / 2), e.css({
+                left: T,
+                "z-index": 1
+            })) : e.css({
+                "z-index": 1
+            }) : 3 > t ? setTimeout(function() {
+                n(i, e, t)
+            }, 100) : e.css({
+                "z-index": 1
+            })
+        }
+    }, {}],
+    6: [function(i, e, t) {
+        "use strict";
+        i("./genClickThroughURL.js");
+        e.exports = function(i, e, t) {
+            var n = i;
+            return n.SITE_ID = i.CREATIVE_INFO.SITE_ID, n.EXT_SHOWBEACON_URL = "//ss.c.appier.net/s?c=<% this.richmedia.cid %>&pt=<% this.richmedia.partner_id %>&tracking_ns=tTHAmreRRwignKFVN8Zs9Q&bi=<% this.richmedia.bidobjid %>", n.SKEY = i.CREATIVE_INFO.SKEY, n.XUID = "", n.IDFA = "", n.GU = "", n.ADXIDFA = "", n.DEFAULT_JSON = i.CREATIVE_INFO.DEFAULT_JSON, n.APPEND_GA = "", n.CID = "", n.CRID = "", n.EX = "", n.PRODUCT_IDS = "", n.XST = i.CREATIVE_INFO.CONFIG.XST || e, n.ITEM_COUNTS = i.CREATIVE_INFO.CONFIG.ITEM_COUNTS || t, n.LOGO_IMAGE = i.CREATIVE_INFO.CONFIG.LOGO_IMAGE || i.CREATIVE_INFO.LOGO_IMAGE, n.LOGO_URL = i.CREATIVE_INFO.CONFIG.LOGO_URL || i.CREATIVE_INFO.LOGO_URL, n.LOGO_2_IMAGE = i.CREATIVE_INFO.CONFIG.LOGO_2_IMAGE, n.LOGO_2_URL = i.CREATIVE_INFO.CONFIG.LOGO_2_URL, n.LOGO_PROMOTIONAL_TEXT_FONT_COLOR = i.CREATIVE_INFO.CONFIG.LOGO_PROMOTIONAL_TEXT_FONT_COLOR, n.PROMOTE_IMAGE = i.CREATIVE_INFO.CONFIG.PROMOTE_IMAGE, n.PROMOTE_URL = i.CREATIVE_INFO.CONFIG.PROMOTE_URL, n.PROMOTE_IMAGE_WRAPPER_STYLE = i.CREATIVE_INFO.CONFIG.PROMOTE_IMAGE_WRAPPER_STYLE, n.MAIN_BORDER = i.CREATIVE_INFO.CONFIG.MAIN_BORDER, n.MAIN_BG_COLOR = i.CREATIVE_INFO.CONFIG.MAIN_BG_COLOR, n.MAIN_FONT_FAMILY = i.CREATIVE_INFO.CONFIG.MAIN_FONT_FAMILY, n.ITEM_INFO_FONT_COLOR = i.CREATIVE_INFO.CONFIG.ITEM_INFO_FONT_COLOR, n.CURRENCY_CONTENT = i.CREATIVE_INFO.CONFIG.CURRENCY_CONTENT || "$", n.PRICE_PERCENTILE_TYPE = i.CREATIVE_INFO.CONFIG.PRICE_PERCENTILE_TYPE || "comma", n.IS_SHOW_ORIGIN_PRICE = i.CREATIVE_INFO.CONFIG.IS_SHOW_ORIGIN_PRICE === !0 || "true" == i.CREATIVE_INFO.CONFIG.IS_SHOW_ORIGIN_PRICE ? "show" : "hide", n.ORIGIN_PRICE_FONT_COLOR = i.CREATIVE_INFO.CONFIG.ORIGIN_PRICE_FONT_COLOR, n.ORIGIN_PRICE_TITLE_CONTENT = i.CREATIVE_INFO.CONFIG.ORIGIN_PRICE_TITLE_CONTENT, n.ORIGIN_PRICE_TAIL_CONTENT = i.CREATIVE_INFO.CONFIG.ORIGIN_PRICE_TAIL_CONTENT, n.CURRENT_PRICE_FONT_COLOR = i.CREATIVE_INFO.CONFIG.CURRENT_PRICE_FONT_COLOR, n.CURRENT_PRICE_TITLE_CONTENT = i.CREATIVE_INFO.CONFIG.CURRENT_PRICE_TITLE_CONTENT, n.CURRENT_PRICE_TAIL_CONTENT = i.CREATIVE_INFO.CONFIG.CURRENT_PRICE_TAIL_CONTENT, n.PROMOTIONAL_TEXT_FONT_COLOR = i.CREATIVE_INFO.CONFIG.PROMOTIONAL_TEXT_FONT_COLOR, n.DISCOUNT_TAG_BG_COLOR = i.CREATIVE_INFO.CONFIG.DISCOUNT_TAG_BG_COLOR, n.DISCOUNT_TAG_FONT_COLOR = i.CREATIVE_INFO.CONFIG.DISCOUNT_TAG_FONT_COLOR, n.ACT_BTN_LG_CONTENT = i.CREATIVE_INFO.CONFIG.ACT_BTN_LG_CONTENT || "馬上購買", n.ACT_BTN_LG_BG_COLOR = i.CREATIVE_INFO.CONFIG.ACT_BTN_LG_BG_COLOR, n.ACT_BTN_LG_FONT_COLOR = i.CREATIVE_INFO.CONFIG.ACT_BTN_LG_FONT_COLOR, n.ACT_BTN_SM_CONTENT = i.CREATIVE_INFO.CONFIG.ACT_BTN_SM_CONTENT || "購買", n.ACT_BTN_SM_BG_COLOR = i.CREATIVE_INFO.CONFIG.ACT_BTN_SM_BG_COLOR, n.ACT_BTN_SM_FONT_COLOR = i.CREATIVE_INFO.CONFIG.ACT_BTN_SM_FONT_COLOR, n
+        }
+    }, {
+        "./genClickThroughURL.js": 10
+    }],
+    7: [function(i, e, t) {
+        "use strict";
+        e.exports = function(i, e, t, n) {
+            if ("XDomainRequest" in window && null !== window.XDomainRequest) {
+                var _ = new XDomainRequest;
+                _.open("get", i), _.onload = function() {
+                    var i = new ActiveXObject("Microsoft.XMLDOM"),
+                        t = $.parseJSON(_.responseText);
+                    i.async = !1, null != t && "undefined" != typeof t || (t = $.parseJSON(data.firstChild.textContent)), e(t)
+                }, _.onprogress = function() {}, _.ontimeout = function() {}, _.onerror = function() {
+                    t()
+                }, setTimeout(function() {
+                    _.send()
+                }, 0)
+            } else n ? $.ajax({
+                url: i,
+                dataType: "json",
+                type: "GET",
+                success: function(i, t) {
+                    e(i)
+                },
+                error: function(i) {
+                    t()
+                },
+                xhrFields: {
+                    withCredentials: !0
+                }
+            }) : $.ajax({
+                url: i,
+                dataType: "json",
+                type: "GET",
+                success: function(i, t) {
+                    e(i)
+                },
+                error: function(i) {
+                    t()
+                }
+            })
+        }
+    }, {}],
+    8: [function(i, e, t) {
+        "use strict";
+        e.exports = {
+            getDiscountRate: function(i, e, t) {
+                var n = i.split(","),
+                    _ = e.split(",");
+                if (i = n.join(""), e = _.join(""), 0 === i || parseInt(i, 10) <= parseInt(e, 10) || 1 === e) return {
+                    discountRate: 0,
+                    discountDom: "<span></span>"
+                };
+                var r, T, O = window.CREATIVE_INFO.CONFIG.DISCOUNT_TAG_BG_COLOR,
+                    a = window.CREATIVE_INFO.CONFIG.DISCOUNT_TAG_FONT_COLOR,
+                    s = ["color:" + O, "background-color:" + a].join(";");
+                return "savingPriceRate" === t ? (r = Math.floor((i - e) / i * 100), T = '<div class="savingPriceRate' + ("0" === r || "" === r ? " hide" : "") + '"><span class="discountRate" style="' + s + '">-' + r + "%</span></div>", {
+                    discountRate: r,
+                    discountDom: T
+                }) : "discountPercentage" === t ? (r = Math.floor(e / i * 100).toString(), parseInt(r, 10) < 50 && 2 === r.length && 0 != r.slice(1) && (r = r.slice(0, 1).toString() + "." + r.slice(1).toString()), T = '<div class="discountPercentage' + ("100" === r || "0" === r || "" === r ? " hide" : "") + '"><span class="discountRate" style="' + s + '">' + r.split("0")[0] + "折</span></div>", {
+                    discountRate: "100" !== r ? r.split("0")[0] : "100",
+                    discountDom: T
+                }) : void 0
+            }
+        }
+    }, {}],
+    9: [function(i, e, t) {
+        "use strict";
+        e.exports = function(i, e) {
+            for (var t = i; t.length < e;) t = t.concat(i);
+            return t
+        }
+    }, {}],
+    10: [function(i, e, t) {
+        "use strict";
+
+        function n(i) {
+            return i.indexOf("?") ? i : i + "?"
+        }
+
+        function _(i) {
+            return i && "&" !== i.charAt(0) ? "&" + i : i
+        }
+        var r = i("./TemplateEngine.js");
+        e.exports = function(i) {
+            var e = i.bidobjid || "",
+                t = i.clickThroughURL || "",
+                T = i.ga || "";
+            return t = t.replace("$su$_bi_$su$", e), T = (T || "").replace("$su$_bi_$su$", e), T = _(T),
+                function(i, e) {
+                    var _ = "";
+                    return i ? ($.isEmptyObject(e) || (_ = r(e.template, {
+                        item: e.item,
+                        richmedia: e.richmedia
+                    })), i = n(i || "") + T, t + encodeURIComponent(i) + _) : ""
+                }
+        }
+    }, {
+        "./TemplateEngine.js": 2
+    }],
+    11: [function(i, e, t) {
+        "use strict";
+        var n = i("./TemplateEngine.js");
+        i("./discountTag.js");
+        e.exports = function(i, e, t) {
+            var _, r = ["color:" + LOGO_PROMOTIONAL_TEXT_FONT_COLOR].join(";"),
+                T = '<span class="discountRateWrap"></span>',
+                O = ["border:" + MAIN_BORDER, "background-color:" + MAIN_BG_COLOR, "font-family:" + MAIN_FONT_FAMILY].join(";"),
+                a = ["color:" + ITEM_INFO_FONT_COLOR].join(";"),
+                s = ["color:" + ORIGIN_PRICE_FONT_COLOR].join(";"),
+                c = ["color:" + CURRENT_PRICE_FONT_COLOR].join(";"),
+                o = ["color:" + PROMOTIONAL_TEXT_FONT_COLOR, "border-color:" + PROMOTIONAL_TEXT_FONT_COLOR].join(";"),
+                I = ["color:" + ACT_BTN_LG_FONT_COLOR, "background-color:" + ACT_BTN_LG_BG_COLOR].join(";"),
+                N = ["color:" + ACT_BTN_SM_FONT_COLOR, "background-color:" + ACT_BTN_SM_BG_COLOR].join(";"),
+                E = "<span></span>";
+            return t && (E = '<div class="promote-image-wrapper promo-wrap" style="' + PROMOTE_IMAGE_WRAPPER_STYLE + '"><a class="promo" href="' + PROMOTE_URL + '" target="_blank"><img src="' + PROMOTE_IMAGE + '"></a></div>'), _ = i.replace(/mainStyle/g, O).replace(/LOGO_URL/g, LOGO_URL).replace(/LOGO_IMAGE/g, LOGO_IMAGE).replace(/logoPromotionalTextStyle/g, r).replace(/discountTagDom/g, T).replace(/itemInfoStyle/g, a).replace(/IS_SHOW_ORIGIN_PRICE/g, IS_SHOW_ORIGIN_PRICE).replace(/orginPriceStyle/g, s).replace(/ORIGIN_PRICE_TITLE_CONTENT/g, ORIGIN_PRICE_TITLE_CONTENT).replace(/ORIGIN_PRICE_TAIL_CONTENT/g, ORIGIN_PRICE_TAIL_CONTENT).replace(/currentPriceStyle/g, c).replace(/CURRENT_PRICE_TITLE_CONTENT/g, CURRENT_PRICE_TITLE_CONTENT).replace(/CURRENCY_CONTENT/g, CURRENCY_CONTENT).replace(/CURRENT_PRICE_TAIL_CONTENT/g, CURRENT_PRICE_TAIL_CONTENT).replace(/promotionalTextStyle/g, o).replace(/actBtnLgStyle/g, I).replace(/ACT_BTN_LG_CONTENT/g, ACT_BTN_LG_CONTENT).replace(/actBtnSmStyle/g, N).replace(/ACT_BTN_SM_CONTENT/g, ACT_BTN_SM_CONTENT).replace(/discountTagDom/g, T).replace(/rotatePromoImgDom/g, E), n(_, e)
+        }
+    }, {
+        "./TemplateEngine.js": 2,
+        "./discountTag.js": 8
+    }],
+    12: [function(i, e, t) {
+        "use strict";
+        e.exports = function(i, e) {
+            i = i || 0;
+            var t, n = i.toString().split(".");
+            return t = "comma" === window.CREATIVE_INFO.CONFIG.PRICE_PERCENTILE_TYPE ? "," : "dot" === window.CREATIVE_INFO.CONFIG.PRICE_PERCENTILE_TYPE ? "." : "", n[0] = n[0].replace(/\B(?=(\d{3})+(?!\d))/g, t), n.join(".")
+        }
+    }, {}],
+    13: [function(i, e, t) {
+        "use strict";
+        e.exports = function(e, t, n, _, r, T, O, a, s, c, o, I, N, E, C) {
+            var R, l = i("./crossDomainAjax.js"),
+                p = ["xst=" + e, "skey=" + n];
+            _ && p.push("xuid=" + _), r && p.push("idfa=" + r), T && p.push("gu=" + T), O && p.push("adxidfa=" + O), a && p.push("cid=" + a), s && p.push("crid=" + s), E && p.push("ex=" + E), C && p.push("product_ids=" + C), p.push("uuid=" + o), p.push("ts=" + +new Date), R = p.join("&");
+            var u = "//dync2.c.appier.net/w/" + t + "/r?" + R;
+            "static" === window.CREATIVE_INFO.MODE ? l(c, I, function() {}, !1) : (l(c, N, function() {}, !1), l(u, I, function() {}, !0))
+        }
+    }, {
+        "./crossDomainAjax.js": 7
+    }],
+    14: [function(i, e, t) {
+        "use strict";
+        var n = i("./genClickThroughURL");
+        e.exports = function(e, t, _, r, T) {
+            function O(i) {
+                for (var e, t, n = i.length; n; e = Math.floor(Math.random() * n), t = i[--n], i[n] = i[e], i[e] = t);
+                return i
+            }
+            var a = i("./TemplateEngine.js"),
+                s = n({
+                    clickThroughURL: window.CLICK_THROUHG_URL,
+                    ga: t,
+                    bidobjid: r.bidobjid
+                }),
+                c = void 0,
+                o = "logo_" + _,
+                I = "";
+            T[o] && T[o].landurl && (c = a(T[o].landurl, {
+                richmedia: r
+            })), T[o] && T[o].img && (e = T[o].img);
+            var N = $.map(T.value, function(i) {
+                return i.img && !i.img.match(/^http/) && (i.img = "http:" + i.img), i.origprice = i.origprice || i.price, I = (i.url || "").indexOf("?") ? i.url : i.url + "?", i.click_url = s(I, {
+                    template: T.land_append,
+                    item: i,
+                    richmedia: r
+                }), i
+            });
+            return "static" === window.CREATIVE_INFO.MODE && (N = O(N)), {
+                APPEND_GA: t,
+                LOGO_IMAGE: e,
+                data: N
+            }
+        }
+    }, {
+        "./TemplateEngine.js": 2,
+        "./genClickThroughURL": 10
+    }],
+    15: [function(i, e, t) {
+        "use strict";
+        e.exports = function(e, t, n, _) {
+            var r = i("./TemplateEngine.js"),
+                T = new Image;
+            if (T.src = r(t.show_beacon_template, {
+                    richmedia: n,
+                    layout_id: e
+                }), _) {
+                var O = new Image;
+                O.src = _
+            }
+        }
+    }, {
+        "./TemplateEngine.js": 2
+    }],
+    16: [function(i, e, t) {
+        "use strict";
+        e.exports = function(i) {
+            var e = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_".split(""),
+                t = [],
+                n = 0;
+            for (i = i || 22, n = 0; i > n; n++) t[n] = e[0 | 64 * Math.random()];
+            return t.join("")
+        }
+    }, {}]
+}, {}, [1]);
