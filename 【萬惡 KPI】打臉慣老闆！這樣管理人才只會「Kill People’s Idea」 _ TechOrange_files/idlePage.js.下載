@@ -1,0 +1,10 @@
+function loadjscssfile(filename,filetype){if(filetype=="js"){var fileref=document.createElement('script')
+fileref.setAttribute("type","text/javascript")
+fileref.setAttribute("src",filename)}else if(filetype=="css"){var fileref=document.createElement("link")
+fileref.setAttribute("rel","stylesheet")
+fileref.setAttribute("type","text/css")
+fileref.setAttribute("href",filename)}
+if(typeof fileref!="undefined")
+document.getElementsByTagName("head")[0].appendChild(fileref)}
+loadjscssfile("/wp-content/themes/fusionmedium/orange-idle/js/idle.js","js");var myTimer=300000;var arrPost;if(jQuery('link[rel=shortlink]').attr('href')){arrPost=jQuery('link[rel=shortlink]').attr('href').split('=');var strChannel='bo';var arrChannel=arrPost[0].split('/vidaorange/');strChannel=arrChannel.length>1?'vo':strChannel;arrChannel=arrPost[0].split('/techorange/');strChannel=arrChannel.length>1?'to':strChannel;}
+jQuery(window).load(function(){if(!navigator.userAgent.match(/(iPhone|iPod|Android)/i)){setIdleTimeout(myTimer);document.onIdle=function(){jQuery('#dialog').dialog("open");}}});jQuery(document).ready(function(e){jQuery('#dialog').dialog({autoOpen:false,modal:true,width:1018,top:20,height:595,closeOnEscape:true,draggable:false,resizable:false,open:function(){jQuery('.ui-widget-overlay').bind('click',function(){jQuery('#dialog').dialog('close');})}});});

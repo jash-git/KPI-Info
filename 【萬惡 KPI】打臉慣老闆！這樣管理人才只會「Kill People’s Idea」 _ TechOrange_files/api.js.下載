@@ -1,0 +1,138 @@
+(function(d) {
+    // 測試修改抓name
+    /*********************************************************************************/
+    icon = 'https://mediafarmers.org/api/images/herbs.png';
+    title = '媒體小農';
+    api_id = 'venus';
+    api_url = 'https://mediafarmers.org/api/api.php';
+    api_width = 780;
+    api_height = 700;
+    counting = 'https://mediafarmers.org/api/counting.php';
+    ajax = 'https://mediafarmers.org/api/ajax.dom.php';
+    div_id = 'herbsapi';
+    div_name = 'manyherbsapi';
+    /*********************************************************************************/
+
+    test = d.getElementsByName(div_name);
+    if (test.length > 0) {
+        o = d.getElementsByName(div_name);
+        for (i = 0; i < o.length; i++) {
+            api_url = 'https://mediafarmers.org/api/api.php';
+            d_url = o[i].getAttribute('hb-url');
+            d_title = o[i].getAttribute('hb-title');
+            d_author = o[i].getAttribute('hb-author');
+            d_width = o[i].getAttribute('hb-width');
+            d_height = o[i].getAttribute('hb-height');
+            d_icon = o[i].getAttribute('hb-icon');
+            d_noicon = o[i].getAttribute('hb-noicon');
+
+            api_url += (!empty(d_url)) ? '?u=' + encodeURIComponent(d_url) : '?u=' + encodeURIComponent(d.URL);
+            api_url = api_url.replace('#', '');
+            api_url += (!empty(d_title)) ? '&t=' + d_title : '&t=' + d.title;
+            api_url += (!empty(d_author)) ? '&a=' + d_author : '';
+
+            api_url = api_url.replace(/\'/g, '’');
+            api_url = api_url.replace(/\(/g, '（');
+            api_url = api_url.replace(/\)/g, '）');
+
+            imgtag = '<img src="';
+            imgtag += (!empty(d_icon)) ? d_icon + '"' : icon + '"';
+            imgtag += (!empty(d_width)) ? ' width="' + d_width + '"' : ' width="32px"';
+            imgtag += (!empty(d_height)) ? ' height="' + d_height + '"' : ' height="32px"';
+            imgtag += ' title="' + title + '">';
+
+            tags = '';
+            tags += '<a href="#" onclick="window.open(\'' + api_url + '\', \'' + api_id + '\', config=\'height=' + api_height + ',width=' + api_width + ',scrollbars=yes\');return false;">';
+            if (d_noicon) {
+                tags += d_noicon;
+            } else {
+                tags += imgtag;
+            }
+
+            tags += '</a>';
+
+            if (!o) {
+                d = d.createElement('div');
+                d.id = 'herbsapi';
+                d.body.appendChild(d);
+            }
+
+            o[i].innerHTML = tags;
+        }
+    } else {
+        o = d.getElementById(div_id);
+        d_url = o.getAttribute('hb-url');
+        d_title = o.getAttribute('hb-title');
+        d_author = o.getAttribute('hb-author');
+        d_width = o.getAttribute('hb-width');
+        d_height = o.getAttribute('hb-height');
+        d_icon = o.getAttribute('hb-icon');
+        d_noicon = o.getAttribute('hb-noicon');
+
+        api_url += (!empty(d_url)) ? '?u=' + encodeURIComponent(d_url) : '?u=' + encodeURIComponent(d.URL);
+        api_url = api_url.replace('#', '');
+        api_url += (!empty(d_title)) ? '&t=' + d_title : '&t=' + d.title;
+        api_url += (!empty(d_author)) ? '&a=' + d_author : '';
+
+        api_url = api_url.replace(/\'/g, '’');
+        api_url = api_url.replace(/\(/g, '（');
+        api_url = api_url.replace(/\)/g, '）');
+
+        imgtag = '<img src="';
+        imgtag += (!empty(d_icon)) ? d_icon + '"' : icon + '"';
+        imgtag += (!empty(d_width)) ? ' width="' + d_width + '"' : ' width="32px"';
+        imgtag += (!empty(d_height)) ? ' height="' + d_height + '"' : ' height="32px"';
+        imgtag += ' title="' + title + '">';
+
+        tags = '';
+        tags += '<a href="#" onclick="window.open(\'' + api_url + '\', \'' + api_id + '\', config=\'height=' + api_height + ',width=' + api_width + ',scrollbars=yes\');return false;">';
+        if (d_noicon) {
+            tags += d_noicon;
+        } else {
+            tags += imgtag;
+        }
+
+        tags += '</a>';
+
+        if (!o) {
+            d = d.createElement('div');
+            d.id = 'herbsapi';
+            d.body.appendChild(d);
+        }
+
+        d.getElementById(div_id).innerHTML = tags;
+    }
+    //document.location.href = "https://venus2.nctu.me/api/api_test.js";
+    // if(d.getElementById('fastLogin') != null) 
+    // {
+    // 	tags += '<a href="#" onclick="window.open(\''+ api_url +'\', \''+ api_id +'\', config=\'height='+ api_height +',width='+ api_width +',scrollbars=yes\');return false;">';
+    // 	document.getElementById('fastLogin').setAttribute('onclick','getLogin('+hyperLink+');') ;
+    // }
+
+    // var selfURL = window.location.href,
+    //     xhr = new XMLHttpRequest();
+
+    // xhr.open('POST', encodeURI(ajax));
+    // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    // xhr.onload = function()
+    // {
+    // 	if (xhr.status === 200 && xhr.responseText !== selfURL)
+    // 	{
+    // 		//alert('Something went wrong. URL is now ' + xhr.responseText);
+    // 	}
+    // 	else if (xhr.status !== 200)
+    // 	{
+    // 		//alert('Request failed.  Returned status of ' + xhr.status);
+    // 	}
+    // };
+    // xhr.send(encodeURI('url=' + selfURL));
+
+}(document));
+
+function empty(obj) {
+    return (typeof(obj) == 'undefined' || obj == null) ? true : false;
+}
+
+function getLogin(hyperLink) {
+    hyperLink;
+}

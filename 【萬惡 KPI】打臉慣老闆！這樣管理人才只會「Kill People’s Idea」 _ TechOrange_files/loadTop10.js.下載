@@ -1,0 +1,22 @@
+/**
+ * load top10
+ */
+'use strict';
+
+;(function(gee, $) {
+    gee.hook('loadTop10', function (me){
+        var callback = function () {
+            if (this.success !== true) {
+            } else {
+                me.html(this.data.html);
+            }
+        };
+
+        gee.yell('', {
+            action: 'filecache/get',
+            name: 'top10',
+            site_id: me.data('site_id')
+        }, callback, callback);
+
+    }, 'init');
+}(gee, jQuery));
